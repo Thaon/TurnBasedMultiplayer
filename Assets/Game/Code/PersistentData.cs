@@ -19,15 +19,18 @@ public class PersistentData : Photon.MonoBehaviour, IPunObservable
 	
 	void Update ()
     {
-        if (!photonView.isMine || !PhotonNetwork.inRoom)
+        if (!PhotonNetwork.inRoom)
         {
-            return;
-        }
+            if (!photonView.isMine)
+            {
+                return;
+            }
 
-        //this object is under our control from here!
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            photonView.RPC("SetTurn", PhotonTargets.All, PhotonNetwork.player.ID);
+            //this object is under our control from here!
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                photonView.RPC("SetTurn", PhotonTargets.All, PhotonNetwork.player.ID);
+            }
         }
     }
 
