@@ -19,7 +19,7 @@ public class PersistentData : Photon.MonoBehaviour, IPunObservable
 	
 	void Update ()
     {
-        if (!PhotonNetwork.inRoom)
+        if (PhotonNetwork.inRoom)
         {
             if (!photonView.isMine)
             {
